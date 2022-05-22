@@ -23,8 +23,6 @@ def on_release(key):
 def fetch():
     # Currently fetches all the data from a database and copys the last value
     fetch = requests.get('http://192.168.128.241:5000/fetch')
-    print(fetch)
-    print(fetch.json())
     final = fetch.json()[-1][1]
     pyperclip.copy(final)
     return final
