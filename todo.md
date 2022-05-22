@@ -18,6 +18,11 @@
   - Hotkey to send the text
       CMD+C then CMD+Z to send the text
 
+  - ADD TO DATABASE
+      ctrl+alt+p
+  - FETCH FROM DATABAES
+      ctrl+alt+f
+
 ### Server
   - Request individual data
 
@@ -35,6 +40,7 @@ for masOS/Linux
 nohup python main.py
 
 for Windows
+START /B main.py
 
 KILL:
 pkill -f test.py

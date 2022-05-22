@@ -19,16 +19,14 @@ def fetch_all():
 def home():
     return "<p>blah</p>"
 
+# *** Fetch data from the database
 @app.route('/fetch/', methods=['GET'])
 def fetch():
-    #conn = sqlite3.connect('scdatabase.db', check_same_thread=False)
-    #cur = conn.cursor()
     all_data = fetch_all()
-    #all_data = cur.execute('SELECT * FROM data;').fetchall()
     return jsonify(all_data)
 
 # *** Add data to db ***
-# 127.0.0.01/post?content=* 
+# localIP/post?content=* 
 @app.route('/post/', methods=['GET'])
 def post():
     query_parameters = request.args

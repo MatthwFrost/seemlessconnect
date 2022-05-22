@@ -3,38 +3,20 @@ import requests
 import pyperclip
 from pynput import keyboard
 
-# The key combination to check
-COMBINATIONS = [
-    {keyboard.Key.shift, keyboard.KeyCode(char='Z')}
-]
-# The currently active modifiers
-current = set()
 
-def on_press(key):
-    if any([key in COMBO for COMBO in COMBINATIONS]):
-        current.add(key)
-        if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
-            post()
-            pyperclip.copy(fetch())
-
-def on_release(key):
-    if any([key in COMBO for COMBO in COMBINATIONS]):
-        current.remove(key)
-
+# *** Fetches the latest entry in the database
 def fetch():
     # Currently fetches all the data from a database and copys the last value
     fetch = requests.get('http://192.168.128.241:5000/fetch')
-    final = fetch.json()[-1][1]
-    return final
+    final = fetch.json()
+    pyperclip.copy(final[-1][1])
 
 # *** takes current clipboard and sends it to the server *** 
 def post():
     clipboard_value = pyperclip.paste()
     post = requests.get(f'http://192.168.128.241:5000/post?content={clipboard_value}')
-    return clipboard_value
 
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
-
-print(fetch())
-
+with keyboard.GlobalHotKeys({
+        '<alt>+<ctrl>+p': post,
+        '<alt>+<ctrl>+f': fetch}) as h:
+    h.join()
