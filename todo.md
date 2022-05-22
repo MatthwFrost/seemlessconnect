@@ -1,5 +1,4 @@
 # Todo List
-
   - Create a program that can send text to different devices
   - Essentaily a NAS, Maybe yes a NAS that has a user interface
   - Create an api that can communicate between the server
@@ -37,3 +36,5 @@ nohup python main.py
 
 for Windows
 
+KILL:
+pkill -f test.py

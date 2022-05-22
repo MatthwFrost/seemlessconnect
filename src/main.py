@@ -15,6 +15,7 @@ def on_press(key):
         current.add(key)
         if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
             post()
+            fetch()
 
 def on_release(key):
     if any([key in COMBO for COMBO in COMBINATIONS]):
@@ -25,7 +26,6 @@ def fetch():
     fetch = requests.get('http://192.168.128.241:5000/fetch')
     final = fetch.json()[-1][1]
     pyperclip.copy(final)
-    return final
 
 # *** takes current clipboard and sends it to the server *** 
 def post():
