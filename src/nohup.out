@@ -10,3 +10,15 @@ Traceback (most recent call last):
   File "/Users/matthewfrost/opt/anaconda3/lib/python3.9/threading.py", line 1069, in _wait_for_tstate_lock
     elif lock.acquire(block, timeout):
 KeyboardInterrupt
+Traceback (most recent call last):
+  File "/Users/matthewfrost/seemlessconnect/src/main.py", line 42, in <module>
+    main()
+  File "/Users/matthewfrost/seemlessconnect/src/main.py", line 39, in main
+    listener.join()
+  File "/Users/matthewfrost/opt/anaconda3/lib/python3.9/site-packages/pynput/_util/__init__.py", line 269, in join
+    super(AbstractListener, self).join(*args)
+  File "/Users/matthewfrost/opt/anaconda3/lib/python3.9/threading.py", line 1053, in join
+    self._wait_for_tstate_lock()
+  File "/Users/matthewfrost/opt/anaconda3/lib/python3.9/threading.py", line 1069, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt

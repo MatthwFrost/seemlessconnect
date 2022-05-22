@@ -15,7 +15,7 @@ def on_press(key):
         current.add(key)
         if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
             post()
-            fetch()
+            pyperclip.copy(fetch())
 
 def on_release(key):
     if any([key in COMBO for COMBO in COMBINATIONS]):
@@ -25,7 +25,7 @@ def fetch():
     # Currently fetches all the data from a database and copys the last value
     fetch = requests.get('http://192.168.128.241:5000/fetch')
     final = fetch.json()[-1][1]
-    pyperclip.copy(final)
+    return final
 
 # *** takes current clipboard and sends it to the server *** 
 def post():
@@ -37,9 +37,6 @@ def main():
 
     with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
-
-    while True:
-        fetch()
 
 if __name__ == '__main__':
     main()
